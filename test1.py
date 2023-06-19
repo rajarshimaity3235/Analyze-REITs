@@ -1,3 +1,5 @@
+#created by Rajarshi Maity
+#19th June, 2023
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
@@ -15,7 +17,7 @@ from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 from GoogleNews import GoogleNews
 from PIL import Image
 
-# Set page layout using Bootstrap
+# Set page layout
 st.set_page_config(layout="wide")
 
 # Set sidebar width and style
@@ -67,7 +69,6 @@ st.sidebar.title("Choose the Ticker")
 reit_symbol = st.sidebar.text_input("Enter the REIT symbol:",value="PLD")
 time_range = st.sidebar.selectbox("Choose the time range", ("1d", "5d", "1w", "1mo", "1y", "5y", "max"))
 
-# Calculate the start and end dates based on the selected time range
 end_date = datetime.today()
 if time_range == "1d":
     start_date = end_date - pd.DateOffset(days=1)
@@ -84,14 +85,13 @@ elif time_range == "5y":
 else:
     start_date = "2010-01-01"  # Default to start from the beginning
 
-# Retrieve the historical data from Yahoo Finance
+# Yahoo Finance
 reit_data = yf.download(reit_symbol, start=start_date, end=end_date)
 reit_ticker = yf.Ticker(reit_symbol)
 
-# Create subplots with shared x-axis
 fig = make_subplots(rows=2, cols=1, shared_xaxes=True, vertical_spacing=0.2, row_heights=[0.7, 0.3])
 
-# Add the stock price candlestick trace to the first subplot
+# Add the stock price 
 fig.add_trace(go.Candlestick(x=reit_data.index,
                              open=reit_data['Open'],
                              high=reit_data['High'],
@@ -100,7 +100,7 @@ fig.add_trace(go.Candlestick(x=reit_data.index,
                              name='Price'),
               row=1, col=1)
 
-# Add the volume trace to the second subplot
+# Add the volume trace
 fig.add_trace(go.Bar(x=reit_data.index,
                      y=reit_data['Volume'],
                      name='Volume'),
@@ -112,13 +112,12 @@ fig.update_layout(title=f"{reit_symbol} Stock Price and Volume",
                   legend=dict(x=0.02, y=0.95),
                   height=600)
 
-# Set y-axis titles for each subplot
+
 fig.update_yaxes(title_text='Price', row=1, col=1)
 fig.update_yaxes(title_text='Volume', row=2, col=1)
 fig.update_xaxes(title_text="Date")
 
-# Display the plot using Streamlit
-# Retrieve REIT information
+
 reit = yf.Ticker(reit_symbol)
 reit_info = reit.info
 
@@ -275,7 +274,6 @@ df_top10['Square Footage'] = df_top10['Square Footage'].str.replace(',', '').ast
 # Calculate the sizes for the treemap
 sizes = df_top10['Square Footage'].values
 
-# Create a color palette with contrasting colors
 colors = px.colors.qualitative.Dark24[:len(df_top10)]
 
 # Create the treemap figure
@@ -395,8 +393,7 @@ for item in data:
     st.write("Related Tickers:", ", ".join(item["relatedTickers"]))
     st.write("---")
 
-
-# Add your social media links with icons in a single row
+#social media
 st.sidebar.write("---")
 st.sidebar.markdown(
     """
@@ -425,7 +422,7 @@ st.sidebar.markdown(
     unsafe_allow_html=True
 )
 
-# Display the copyright message with your name
+# copyright message
 st.sidebar.markdown(
     """
     <div style="text-align: center;">
