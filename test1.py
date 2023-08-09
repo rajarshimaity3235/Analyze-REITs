@@ -615,7 +615,7 @@ st.sidebar.markdown(
     """
     <div style="text-align: center;">
         <p style="font-size: 12px; color: gray;">
-            © 2023 Rajarshi Maity. All rights reserved. This content is for educational purposes only.
+            © 2023 Rajarshi Maity and Sambit Bhunia. All rights reserved. This content is for educational purposes only.
         </p>
     </div>
     """,
