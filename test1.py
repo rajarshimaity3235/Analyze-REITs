@@ -180,7 +180,8 @@ try:
     reit_info = reit.info
 
     # Display the REIT information
-    st.title(reit_info['longName'] + "  -  " + reit_symbol)
+    #st.title(reit_info['longName'] + "  -  " + reit_symbol)
+    st.title(reit_symbol)
     #st.markdown("---")
     st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#333;" /> """, unsafe_allow_html=True)
 
