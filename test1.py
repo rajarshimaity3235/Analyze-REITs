@@ -292,7 +292,7 @@ try:
 
 except Exception as e:
     reit = TT(reit_symbol)
-    reit_info=reit.summary_detail
+    reit_info=reit.asset_profile
 
     # Display the REIT information
     #st.title(reit.price.get(reit_symbol).get('longName', ' ')+" - "+ reit_symbol)
