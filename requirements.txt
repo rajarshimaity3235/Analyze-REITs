@@ -10,5 +10,5 @@ streamlit_card==0.0.5
 streamlit_folium==0.12.0
 streamlit_option_menu==0.3.6
 yahooquery==2.3.3
-yfinance==0.2.31
+yfinance==0.2.36
 streamlit-aggrid==0.3.4.post3
