@@ -295,7 +295,7 @@ except Exception as e:
     reit_info=reit.asset_profile
 
     # Display the REIT information
-    st.title(reit.price.get(reit_symbol).get('longName', ' ')+" - "+ reit_symbol)
+    #st.title(reit.price.get(reit_symbol).get('longName', ' ')+" - "+ reit_symbol)
     #st.markdown("---")
     st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#333;" /> """, unsafe_allow_html=True)
 
