@@ -575,23 +575,7 @@ try:
         st.write("---")
 
 except:
-    reit_news = yf.Ticker(reit_symbol)
-    st.title("Related News")
-    st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#333;" /> """, unsafe_allow_html=True)
-
-    data=reit_news.news
-    # Set column width
-    col_width = 400
-
-    for item in data:
-        st.subheader(item["title"])
-        if "thumbnail" in item:
-            st.image(item["thumbnail"]["resolutions"][0]["url"], caption=item["publisher"], width=col_width)
-        st.write(item["publisher"])
-        st.write(f"Read more: [{item['title']}]({item['link']})")
-        st.write("Related Tickers:", ", ".join(item["relatedTickers"]))
-        st.write("---")
-#st.write('Website it currently under maintainance. No news available.')
+    st.write('Website it currently under maintainance. No news available.')
 
 # Add your social media links with icons in a single row
 st.sidebar.write("---")
