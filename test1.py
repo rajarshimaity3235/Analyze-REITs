@@ -17,10 +17,10 @@ from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 from GoogleNews import GoogleNews
 from PIL import Image
 
-# Set page layout using Bootstrap
+
 st.set_page_config(layout="wide")
 
-# Set sidebar width and style
+# Sidebar
 st.markdown(
     """
     <style>
@@ -36,7 +36,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Set main content width and style
+# width and style
 st.markdown(
     """
     <style>
@@ -64,7 +64,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-# Create a sidebar panel for options
+# sidebar ticker
 reit_symbols_choice = [
     "PLD", "AMT", "EQIX", "CCI", "PSA", "O", "SPG", "WELL", "VICI", "DLR", "SBAC",
     "AVB", "EQR", "WY", "EXR", "ARE", "DRE", "INVH", "VTR", "MAA", "SUI", "WPC",
@@ -87,7 +87,7 @@ st.sidebar.title("Choose the Ticker")
 reit_symbol = st.sidebar.selectbox("Enter the REIT symbol:",reit_symbols_choice,index=reit_symbols_choice.index("AAT"))
 time_range = st.sidebar.selectbox("Choose the time range", ("1d", "5d", "1w", "1mo", "1y", "5y", "max"),index=4)
 
-# Calculate the start and end dates based on the selected time range
+# start and end dates
 end_date = datetime.today()
 if time_range == "1d":
     start_date = end_date - pd.DateOffset(days=1)
@@ -105,13 +105,13 @@ else:
     start_date = "2010-01-01"  # Default to start from the beginning
 
 try:
-    # Try to retrieve historical data from Yahoo Finance using yfinance
+    # historical data
     reit_data = yf.download(reit_symbol, start=start_date, end=end_date)
     reit_ticker = yf.Ticker(reit_symbol)
-    # Create subplots with shared x-axis
+    # Create subplots
     fig = make_subplots(rows=2, cols=1, shared_xaxes=True, vertical_spacing=0.2, row_heights=[0.7, 0.3])
 
-    # Add the stock price candlestick trace to the first subplot
+    # candlestick subplot
     fig.add_trace(go.Candlestick(x=reit_data.index,
                                 open=reit_data['Open'],
                                 high=reit_data['High'],
@@ -120,19 +120,19 @@ try:
                                 name='Price'),
                 row=1, col=1)
 
-    # Add the volume trace to the second subplot
+    # volume subplot
     fig.add_trace(go.Bar(x=reit_data.index,
                         y=reit_data['Volume'],
                         name='Volume'),
                 row=2, col=1)
 
-    # Update layout settings
+    # layout settings
     fig.update_layout(title=f"{reit_symbol} Stock Price and Volume",
                     hovermode='x',
                     legend=dict(x=0.02, y=0.95),
                     height=600)
 
-    # Set y-axis titles for each subplot
+
     fig.update_yaxes(title_text='Price', row=1, col=1)
     fig.update_yaxes(title_text='Volume', row=2, col=1)
     fig.update_xaxes(title_text="Date")
@@ -143,7 +143,6 @@ try:
 except Exception as e:
     reit_data = TT(reit_symbol).history(start=start_date, end=end_date)
 
-    # Add the stock price candlestick trace to the first subplot
     fig.add_trace(go.Candlestick(x=reit_data.index,
                                 open=reit_data['Open'],
                                 high=reit_data['High'],
@@ -152,20 +151,19 @@ except Exception as e:
                                 name='Price'),
                 row=1, col=1)
 
-    # Add the volume trace to the second subplot
+    # volume 
     fig.add_trace(go.Bar(x=reit_data.index,
                         y=reit_data['Volume'],
                         name='Volume'),
                 row=2, col=1)
 
-    # Update layout settings
+    # layout settings
     fig.update_layout(title=f"{reit_symbol} Stock Price and Volume",
                     hovermode='x',
                     legend=dict(x=0.02, y=0.95),
                     height=600)
 
-    # Set y-axis titles for each subplot
-    fig.update_yaxes(title_text='Price', row=1, col=1)
+      fig.update_yaxes(title_text='Price', row=1, col=1)
     fig.update_yaxes(title_text='Volume', row=2, col=1)
     fig.update_xaxes(title_text="Date")
 
@@ -295,7 +293,7 @@ except Exception as e:
     reit_info=reit.asset_profile
 
     # Display the REIT information
-    #st.title(reit.price.get(reit_symbol).get('longName', ' ')+" - "+ reit_symbol)
+    st.title(reit.price.get(reit_symbol).get('longName', ' ')+" - "+ reit_symbol)
     #st.markdown("---")
     st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#333;" /> """, unsafe_allow_html=True)
 
