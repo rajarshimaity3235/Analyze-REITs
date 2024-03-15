@@ -163,7 +163,7 @@ except Exception as e:
                     legend=dict(x=0.02, y=0.95),
                     height=600)
 
-      fig.update_yaxes(title_text='Price', row=1, col=1)
+    fig.update_yaxes(title_text='Price', row=1, col=1)
     fig.update_yaxes(title_text='Volume', row=2, col=1)
     fig.update_xaxes(title_text="Date")
 
