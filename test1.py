@@ -575,7 +575,7 @@ try:
         st.write("---")
 
 #except:
-    #st.write('Website it currently under maintainance. No news available.')
+#st.write('Website it currently under maintainance. No news available.')
 
 # Add your social media links with icons in a single row
 st.sidebar.write("---")
