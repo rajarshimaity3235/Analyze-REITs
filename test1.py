@@ -571,11 +571,11 @@ try:
             st.image(item["thumbnail"]["resolutions"][0]["url"], caption=item["publisher"], width=col_width)
         st.write(item["publisher"])
         st.write(f"Read more: [{item['title']}]({item['link']})")
-        #st.write("Related Tickers:", ", ".join(item["relatedTickers"]))
+        st.write("Related Tickers:", ", ".join(item["relatedTickers"]))
         st.write("---")
 
-except:
-    st.write('Website it currently under maintainance. No news available.')
+#except:
+    #st.write('Website it currently under maintainance. No news available.')
 
 # Add your social media links with icons in a single row
 st.sidebar.write("---")
